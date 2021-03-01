@@ -14,3 +14,11 @@ export const LEVELS_PARAM = {
     2: {speeds: speeds2},
     3: {speeds: speeds3}
 };
+
+export const BALL_AUDIO = new Audio();
+BALL_AUDIO.src = '../assets/ball.mp3';
+
+export const SUCCESS_AUDIO = new Audio();
+SUCCESS_AUDIO.src = '../assets/success.mp3';
+
+export const DEFAULT_HOT_KEYS = {jump: 'Space', shortJump: 'KeyW', back: 'KeyA', faster: 'KeyD', pause: 'Enter'};

@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import Menu from './components/menu-component/Menu';
 import GamePage from './components/game-component/GamePage';
-import Records from './components/records-component/Records';
-
+import RecordsPage from './components/records-component/RecordsPage';
+import SettingsPage from './components/settings-component/SettingsPage';
 
 export default function App() {
 
-  const [gamePage, setGamePage] = useState(true);
+  const [activePage, setActivePage] = useState("game");
 
   return (
     <div className="app__container">
-      <Menu />
+      <Menu setActivePage={setActivePage}/>
       <div className="content__container">
       {
-        gamePage ?
-        <GamePage /> : 
-        <Records></Records>
+        activePage === "game" ?
+        <GamePage /> : activePage === "records" ?
+        <RecordsPage /> : <SettingsPage />
       } 
       </div>
     </div>

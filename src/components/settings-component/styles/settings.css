@@ -1,0 +1,26 @@
+.settings-page__container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings__item {
+    display: flex;
+    justify-content: space-around;
+
+    margin: 10px;
+}
+
+.settings__item span,
+.settings__item input {
+    display: block;
+    margin: 0 10px;
+}
+
+.settings__item input {
+    width: 40px;
+}

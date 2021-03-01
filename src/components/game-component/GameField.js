@@ -45,7 +45,7 @@ export default function GameField(props) {
                 }
             }
             if (ballDirectionIsUp) {
-                yBall === ballUpTo ? ballDirectionIsUp = false : yBall -= speeds.ballUp;
+                yBall === ballUpTo ? (ballDirectionIsUp = false) : yBall -= speeds.ballUp;
             } else if (!ballOnShelf) {
                 yBall += speeds.ballDown;
             }
