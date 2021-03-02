@@ -1,5 +1,6 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
+import GameProfile from '../profile-component/GameProfile';
 import Storage from '../../utils/Storage';
 import { WINDOW_WIDTH, WINDOW_HEIGHT, BALL_RADIUS } from '../../utils/constants';
 import { newShelfsData } from './NewShelfsData';
@@ -18,6 +19,8 @@ let Context;
 
 export default function GameField(props) {
     speeds = props.speeds;
+    const [isGaming, setIsGaming] = useState(true);
+    const [failures, setFailures] = useState(0);
 
     const canvas = useRef();
     useEffect(() => {
@@ -48,22 +51,28 @@ export default function GameField(props) {
             }
             if ((shelfs[0].x + shelfs[0].width > WINDOW_WIDTH) && (yBall - BALL_RADIUS < WINDOW_HEIGHT)) {
                 shelfs.forEach((shelf) =>  shelf.x -= speeds.shelf + speedCorrection);
-                if (!timeout) requestAnimationFrame(Context);
+                if (!timeout) {
+                    requestAnimationFrame(Context);
+                }
             }
             if (yBall - BALL_RADIUS >= WINDOW_HEIGHT) {
                 shelfs = Storage.GetData('Shelfs');
                 yBall = shelfs[shelfs.length - 1].y - 50;
+                setFailures(failures => failures + 1);
                 requestAnimationFrame(Context);
             }
             if ((shelfs[0].x < 100) && (yBall + BALL_RADIUS === shelfs[0].y)) {
+                setIsGaming(false);
                 props.isFinish(0);
+                return;
             }
         }
-        Context();
+        return Context();
     })
 
     return <div className={"game-background-" + props.level}>
         <canvas ref={canvas} width={WINDOW_WIDTH} height={WINDOW_HEIGHT} ></canvas>
+        <GameProfile isGaming={isGaming} failures={failures} />
     </div>
 }
 
@@ -80,7 +89,9 @@ document.addEventListener('keypress', (e) => {
 
 function PauseHandler() {
     timeout = !timeout;
-    if (!timeout) Context();
+    if (!timeout) {
+        Context();
+    }
 }
 
 function KeyUpListener(value) {

@@ -6,6 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  overflow: hidden;
 }
 
 code {
@@ -21,7 +23,6 @@ code {
   align-items: stretch;
 
   background: linear-gradient(90deg, #aea4e3, #d3ffe8);
-  overflow: hidden;
 }
 
 .content__container,
@@ -47,6 +48,7 @@ code {
 .game-background-1,
 .game-background-2,
 .game-background-3 {
+  position: relative;
   background-size: cover;
 }
 
@@ -57,6 +59,7 @@ input {
   color: white;
   opacity: 0.7;
   border-radius: 5px;
+  transition: 1s;
 }
 
 button:hover {

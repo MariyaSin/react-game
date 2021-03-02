@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import './styles/settings.css'
 
 import Storage from '../../utils/Storage';

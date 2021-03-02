@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/gameOptions.css';
+import './styles/game.css';
 
 export default function GameOptions(props) {
     return (
