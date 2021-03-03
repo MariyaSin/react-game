@@ -5,8 +5,8 @@ function GetRandom(min, max) {
     return Math.floor((Math.random() * (max - min) + max) / 10) * 10;
 }
 
-function getNewShelfs() {
-    let xStart = Math.floor(WINDOW_WIDTH * 0.4);
+export function ShelfsGenerator() {
+    let xStart = 0;
     let shelfWidth = 0;
     let maxY = WINDOW_HEIGHT - 300;
     let minY = maxY - 170;
@@ -14,14 +14,12 @@ function getNewShelfs() {
         xStart += shelfWidth + GetRandom(-50, 80);
         shelfWidth = GetRandom(50, 250);
         return {x: xStart, y: GetRandom(minY, maxY), width: shelfWidth, height: 20};
-    }).reverse();
-    shelfs[shelfs.length - 1].width += shelfs[shelfs.length - 1].x;
-    shelfs[shelfs.length - 1].x = 0;
-    shelfs[0].width = WINDOW_WIDTH;
-    Storage.SetData('Shelfs', shelfs);
+    });
+    shelfs[0].x = 0;
+    shelfs[0].width = Math.floor(WINDOW_WIDTH * 0.5);
+    shelfs[shelfs.length - 1].width = WINDOW_WIDTH;
+    
+    Storage.SetData('Game-CurrentShelfs', shelfs);
+    console.log('new generation')
     return shelfs;
 }
-
-export const newShelfsData = getNewShelfs();
-
-

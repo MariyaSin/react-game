@@ -4,7 +4,7 @@ import './styles/settings.css'
 import Storage from '../../utils/Storage';
 
 export default function SettingsPage() {
-    let hotKeys = Storage.GetData('HotKeys');
+    let hotKeys = Storage.GetData('Settings-HotKeys');
 
     const [jump, setJump] = useState(hotKeys.jump);
     const [shortJump, setShortJump] = useState(hotKeys.shortJump);
@@ -14,7 +14,7 @@ export default function SettingsPage() {
 
     const handler = (e, action) => {
         hotKeys[action] = e.code;
-        Storage.SetData('HotKeys', hotKeys);
+        Storage.SetData('Settings-HotKeys', hotKeys);
     }
 
     return (

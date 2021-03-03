@@ -7,10 +7,10 @@ const speeds1 = {ballUp: 4, ballDown: 2, shelf: 2};
 const speeds2 = {ballUp: 4, ballDown: 2, shelf: 3};
 const speeds3 = {ballUp: 4, ballDown: 2, shelf: 4};
 
-export const LEVELS_PARAM = {
-    1: {speeds: speeds1},
-    2: {speeds: speeds2},
-    3: {speeds: speeds3}
+export const LEVELS_SPEEDS = {
+    1: speeds1,
+    2: speeds2,
+    3: speeds3
 };
 
 export const BALL_AUDIO = new Audio();

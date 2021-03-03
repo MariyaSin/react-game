@@ -9,7 +9,7 @@ export default function GameProfile(args) {
 
     useEffect(() => {
         let Timer;
-        if (!args.timeOut) {
+        if (!args.pause) {
             Timer = setInterval(() => {
                 if (second === 59) {
                     setSecond(0);
@@ -18,7 +18,7 @@ export default function GameProfile(args) {
                     setSecond(second + 1); 
                 }
                 Storage.SetData(
-                    'CuurentGameProfile', 
+                    'Game-CurrentProfile', 
                     {
                         level: args.level, 
                         minutes: minute, 
@@ -28,7 +28,6 @@ export default function GameProfile(args) {
                 )
             }, 1000);
         }
-
         return () => clearInterval(Timer);
     });
     

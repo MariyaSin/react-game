@@ -10,8 +10,8 @@ export default function App() {
   const [activePage, setActivePage] = useState("game");
   const [runGame, setRunGame] = useState(false);
   const SetAppData = () => {
-    if (!Storage.GetData('HotKeys')) {
-      Storage.SetData('HotKeys', DEFAULT_HOT_KEYS);
+    if (!Storage.GetData('Settings-HotKeys')) {
+      Storage.SetData('Settings-HotKeys', DEFAULT_HOT_KEYS);
     }
   }
   SetAppData();
