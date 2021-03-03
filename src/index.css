@@ -1,6 +1,5 @@
 
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -25,12 +24,14 @@ code {
   background: linear-gradient(90deg, #aea4e3, #d3ffe8);
 }
 
+body,
 .content__container,
 .game-page__container,
 .game-options__container,
 .records-page__container {
   width: 100%;
   height: 100%;
+  margin: 0;
 }
 
 .game-background-1 {

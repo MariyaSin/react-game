@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import './styles/settings.css'
 
 import Storage from '../../utils/Storage';
-import { DEFAULT_HOT_KEYS } from '../../utils/constants';
 
 export default function SettingsPage() {
-    let hotKeys;
-    Storage.GetData('HotKeys') ? hotKeys = Storage.GetData('HotKeys') : hotKeys = DEFAULT_HOT_KEYS;
+    let hotKeys = Storage.GetData('HotKeys');
 
     const [jump, setJump] = useState(hotKeys.jump);
     const [shortJump, setShortJump] = useState(hotKeys.shortJump);

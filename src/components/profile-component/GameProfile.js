@@ -3,16 +3,15 @@ import './styles/profile.css';
 
 import Timer from './Timer';
 
-export default function GameProfile(props) {
+export default function GameProfile(args) {
     
     return (
         <div className="profile__container">
-            <Timer runTimer={props.isGaming}/>
+            <div>Level: {args.level}</div>
+            <Timer runTimer={args.runTimer}/>
             <div className="failures">
-                <span>fail: {props.failures}</span>
+                <span>failures: {args.failures}</span>
             </div>
-            
         </div>
     );
-
 }

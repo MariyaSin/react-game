@@ -3,10 +3,17 @@ import Menu from './components/menu-component/Menu';
 import GamePage from './components/game-component/GamePage';
 import RecordsPage from './components/records-component/RecordsPage';
 import SettingsPage from './components/settings-component/SettingsPage';
+import { DEFAULT_HOT_KEYS } from './utils/constants';
 
 export default function App() {
 
   const [activePage, setActivePage] = useState("game");
+
+  const SetAppData = () => {
+    if (!Storage.GetData('HotKeys')) {
+      Storage.SetData('HotKeys', DEFAULT_HOT_KEYS);
+    }
+  }
 
   return (
     <div className="app__container">

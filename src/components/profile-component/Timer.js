@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-export default function Timer(props) {
+export default function Timer(args) {
     const [second, setSecond] = useState(0);
     const [minute, setMinute] = useState(0);
 
     useEffect(() => {
         let Interval;
-
-        if (props.runTimer) {
+        
+        if (args.runTimer) {
             Interval = setInterval(() => {
                 if (second === 59) {
                     setSecond(0);
@@ -25,8 +25,9 @@ export default function Timer(props) {
 
     return (
         <div className="timer__container">
-            <span>{minute < 10 ? '0' + minute : minute} : </span>
-            <span>{second < 10 ? '0' + second : second}</span>
+            <span>
+                Time {minute < 10 ? '0' + minute : minute} : {second < 10 ? '0' + second : second}
+            </span>
         </div>
     )
 }
