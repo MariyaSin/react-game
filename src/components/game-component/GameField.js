@@ -15,9 +15,10 @@ export default function GameField(args) {
     let ballOnShelf = false;
     let ballDirectionIsUp = false;
     let ballUpTo = 0;
-    let timeout = false;
     let Context;
-    //let failures = 0;
+
+    const [failures, setFailures] = useState(0);
+    const [timeOut, setTimeOut] = useState(false);
 
     document.addEventListener('keypress', (key) => {
         switch(key.code) {
@@ -31,9 +32,9 @@ export default function GameField(args) {
     })
 
     function PauseHandler() {
-        timeout = !timeout;
-        if (!timeout) {
-            Context();
+        setTimeOut(!timeOut);
+        if (!timeOut) {
+            //Context();
         }
     }
 
@@ -53,12 +54,10 @@ export default function GameField(args) {
         }
     }
 
-    const [runGame, setRunGame] = useState(true);
-    const [failures, setFailures] = useState(0);
-
     const canvas = useRef();
     useEffect(() => {
         const context = canvas.current.getContext("2d");
+        
 
         Context = () => {
             context.clearRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -85,28 +84,29 @@ export default function GameField(args) {
             }
             if ((shelfs[0].x + shelfs[0].width > WINDOW_WIDTH) && (yBall - BALL_RADIUS < WINDOW_HEIGHT)) {
                 shelfs.forEach((shelf) =>  shelf.x -= args.speeds.shelf + speedFactor);
-                if (!timeout) {
+                if (!timeOut) {
                     requestAnimationFrame(Context);
                 }
             }
             if (yBall - BALL_RADIUS >= WINDOW_HEIGHT) {
                 shelfs = Storage.GetData('Shelfs');
                 yBall = shelfs[shelfs.length - 1].y - 50;
-                setFailures(failures => failures + 1)
+                setFailures(failures + 1)
                 requestAnimationFrame(Context);
             }
-            if ((shelfs[0].x < 100) && (yBall + BALL_RADIUS === shelfs[0].y)) {
-                setRunGame(false);
-                args.isFinish(0);
-                return;
+            if ((shelfs[0].x < 100) && (yBall + BALL_RADIUS <= shelfs[0].y)) {
+                Storage.AddData('FinishedGamesData', Storage.GetData('CuurentGameProfile'));
+                cancelAnimationFrame(canvas.current);
+                args.setRunGame(false);
+                
             }
         }
-        Context();
-        return () => cancelAnimationFrame(Context);
-    }, [args.level])
+        if (args.runGame) Context();
+        return () => cancelAnimationFrame(canvas.current);
+    })
 
     return <div className={"game-background-" + args.level}>
         <canvas ref={canvas} width={WINDOW_WIDTH} height={WINDOW_HEIGHT} ></canvas>
-        <GameProfile runTimer={runGame} failures={failures} level={args.level} />
+        <GameProfile timeOut={timeOut} failures={failures} level={args.level} />
     </div>
 }
