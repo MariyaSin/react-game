@@ -6,7 +6,6 @@ import { ShelfsGenerator } from './ShelfsGenerator';
 export default function GamePage(args) {
     const [level, setLevel] = useState(0);
 
-    
     return (
         <div className="game-page__container">
         {
@@ -21,5 +20,4 @@ export default function GamePage(args) {
         }
         </div>
     );
-    
 }

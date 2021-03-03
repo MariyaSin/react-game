@@ -17,16 +17,8 @@ export default function RecordsPage() {
             </div>
             {
                 recordsData !== null ? 
-                <div>
-                    <Item data={recordsData[0]} />
-                    <Item data={recordsData[1]} />
-                    <Item data={recordsData[2]} />
-                    <Item data={recordsData[3]} />
-                    <Item data={recordsData[4]} />
-                    <Item data={recordsData[5]} />
-                </div>:
-                <p>Tere is has not data yet</p>
-            }
+                recordsData.map((el, idx) => <Item key={idx} data={el} />) :
+                <p>Tere is has not data yet</p>}
         </div>
     )
 }

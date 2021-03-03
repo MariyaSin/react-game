@@ -20,6 +20,5 @@ export function ShelfsGenerator() {
     shelfs[shelfs.length - 1].width = WINDOW_WIDTH;
     
     Storage.SetData('Game-CurrentShelfs', shelfs);
-    console.log('new generation')
     return shelfs;
 }
