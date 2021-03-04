@@ -13,6 +13,9 @@ export default function App() {
     if (!Storage.GetData('Settings-HotKeys')) {
       Storage.SetData('Settings-HotKeys', DEFAULT_HOT_KEYS);
     }
+    if (!Storage.GetData('Game-OpenLevel')) {
+      Storage.SetData('Game-OpenLevel', 1);
+    }
   }
   SetAppData();
 
@@ -25,6 +28,10 @@ export default function App() {
         <GamePage runGame={runGame} setRunGame={setRunGame}/> : activePage === "records" ?
         <RecordsPage /> : <SettingsPage />
       } 
+      <div className="footer__container">
+        <a href="https://github.com/MariyaSin">My GitHub</a>
+        <a href="https://rs.school/js/"><h1>React course 2021</h1></a>
+      </div>
       </div>
     </div>
   );

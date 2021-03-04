@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import GameProfile from '../profile-component/GameProfile';
+import Popup from './Popup';
 import Storage from '../../utils/Storage';
 import { WINDOW_WIDTH, WINDOW_HEIGHT, BALL_RADIUS } from '../../utils/constants';
 import { LEVELS_SPEEDS } from '../../utils/constants';
@@ -17,6 +18,7 @@ export default function GameField(args) {
     
     const [failures, setFailures] = useState(0);
     const [pause, setPause] = useState(false);
+    const [openPopup, setOpenPopup] = useState(false);
 
     document.addEventListener('keypress', (key) => {
         switch(key.code) {
@@ -82,16 +84,26 @@ export default function GameField(args) {
             if ((shelfs[shelfs.length - 1].x < 50) && (yBall + BALL_RADIUS <= shelfs[shelfs.length - 1].y)) {
                 console.log("finish")
                 Storage.AddData('Game-RecordsData', Storage.GetData('Game-CurrentProfile'));
+                Storage.SetData('Game-OpenLevel', Storage.GetData('Game-OpenLevel') + 1);
+                setOpenPopup(show => show = true);
                 clearInterval(Animation);
-                args.setRunGame(false);
+                const resetGame = setTimeout(() => {
+                    args.setRunGame(false); 
+                    clearTimeout(resetGame)
+                }, 3000);
             }
-            
         }, 30)
         return () => clearInterval(Animation);
     }, []);
 
-    return <div className={"game-background-" + args.level}>
+    return (
+    <div className={"game-background-" + args.level}>
         <canvas ref={canvas} width={WINDOW_WIDTH} height={WINDOW_HEIGHT} ></canvas>
-        <GameProfile pause={pause} failures={failures} level={args.level} />
+        {
+            openPopup ?
+            <Popup showPopup={openPopup} /> :
+            <GameProfile pause={pause} failures={failures} level={args.level} />
+        }
     </div>
+    )
 }
