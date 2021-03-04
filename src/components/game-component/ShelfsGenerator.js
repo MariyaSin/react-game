@@ -10,14 +10,17 @@ export function ShelfsGenerator() {
     let shelfWidth = 0;
     let maxY = WINDOW_HEIGHT - 300;
     let minY = maxY - 170;
-    let shelfs = Array(5).fill({}).map(() => {
+    let shelfs = Array(10).fill({}).map(() => {
         xStart += shelfWidth + GetRandom(-50, 80);
         shelfWidth = GetRandom(50, 250);
         return {x: xStart, y: GetRandom(minY, maxY), width: shelfWidth, height: 20};
     });
     shelfs[0].x = 0;
+    shelfs[0].y = Math.floor(WINDOW_HEIGHT * 0.07) * 10;
     shelfs[0].width = Math.floor(WINDOW_WIDTH * 0.5);
+    shelfs[0].height = WINDOW_HEIGHT - shelfs[0].y;
     shelfs[shelfs.length - 1].width = WINDOW_WIDTH;
+    shelfs[shelfs.length - 1].height = WINDOW_HEIGHT - shelfs[shelfs.length - 1].y;
     
     Storage.SetData('Game-CurrentShelfs', shelfs);
     return shelfs;

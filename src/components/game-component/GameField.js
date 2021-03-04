@@ -14,7 +14,7 @@ export default function GameField(args) {
     let ballDirectionIsUp = false;
     let ballUpTo = 0;
     let xBall = Math.floor(WINDOW_WIDTH * 0.3);
-    let yBall = shelfs[shelfs.length - 1].y - 50;
+    let yBall = Math.floor(WINDOW_HEIGHT * 0.07) * 10 - 60;
     
     const [failures, setFailures] = useState(0);
     const [pause, setPause] = useState(false);
@@ -82,7 +82,6 @@ export default function GameField(args) {
                 setFailures(failure => failure + 1);
             }
             if ((shelfs[shelfs.length - 1].x < 50) && (yBall + BALL_RADIUS <= shelfs[shelfs.length - 1].y)) {
-                console.log("finish")
                 Storage.AddData('Game-RecordsData', Storage.GetData('Game-CurrentProfile'));
                 Storage.SetData('Game-OpenLevel', Storage.GetData('Game-OpenLevel') + 1);
                 setOpenPopup(show => show = true);

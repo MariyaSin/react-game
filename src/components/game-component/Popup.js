@@ -7,7 +7,7 @@ export default function Popup() {
     return (
         <div className="popup__container">
             {
-                gameData.failure === 0 ? <h2>Excellent!!!</h2> : <h2>Game over</h2>
+                gameData.failures === 0 ? <h2>Excellent!!!</h2> : <h2>Game over</h2>
             }
             <div>
                 <span>Time: {gameData.minutes} : {gameData.seconds < 9 ? "0" + gameData.seconds : gameData.seconds}</span>
