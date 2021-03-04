@@ -15,7 +15,7 @@ export default function GamePage(args) {
                 level={level}
                 shelfs={ShelfsGenerator()}
                 runGame={args.runGame} 
-                setRunGame={args.setRunGame} 
+                setRunGame={args.setRunGame}
             />
         }
         </div>

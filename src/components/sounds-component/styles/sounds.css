@@ -1,0 +1,12 @@
+.sounds-toggle {
+    width: 30px;
+    height: 30px;
+
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    
+    background-image: url("../../../assets/sound.png");
+    background-size: cover;
+    z-index: 2;
+}
